@@ -3,6 +3,7 @@
 
 local cooldown = 60
 local tick = 0
+local checkRaceStatus = false
 
 -- HORSE_RACING_WALL = for the big screen
 
@@ -96,6 +97,7 @@ Citizen.CreateThread(function()
             -- Start race
             if (clickedButton == 10) then
                 Utils:StartRace()
+                checkRaceStatus = true
             end
 
             -- Change bet
@@ -112,6 +114,32 @@ Citizen.CreateThread(function()
                     Utils.CurrentBet = (Utils.CurrentBet - 100)
                     Utils.CurrentGain = (Utils.CurrentBet * 2)
                     Utils:UpdateBetValues(Utils.CurrentHorse, Utils.CurrentBet, Utils.PlayerBalance, Utils.CurrentGain)
+                end
+            end
+
+            if (clickedButton == 13) then
+                Utils:ShowMainScreen()
+            end
+
+            -- Check race
+            while checkRaceStatus do
+                Wait(0)
+
+                BeginScaleformMovieMethod(Utils.Scaleform, 'GET_RACE_IS_COMPLETE')
+
+                local raceReturnValue = EndScaleformMovieMethodReturnValue()
+
+                while not IsScaleformMovieMethodReturnValueReady(raceReturnValue) do
+                    Wait(0)
+                end
+
+                local raceFinished = GetScaleformMovieMethodReturnValueBool(raceReturnValue)
+
+                if (raceFinished) then
+                    Utils:ShowResults()
+                    Utils.CurrentHorse = -1
+
+                    checkRaceStatus = false
                 end
             end
         end

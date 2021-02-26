@@ -17,7 +17,7 @@ function Utils:AddHorses()
         BeginTextCommandScaleformString(name)
         EndTextCommandScaleformString()
 
-        ScaleformMovieMethodAddParamPlayerNameString('Just a random horse')
+        ScaleformMovieMethodAddParamPlayerNameString('Cool Horse')
 
         -- Horse style
         ScaleformMovieMethodAddParamInt(self.HorseStyles[i][1])
