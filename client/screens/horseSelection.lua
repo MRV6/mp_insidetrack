@@ -13,15 +13,17 @@ function Utils:AddHorses()
         BeginScaleformMovieMethod(self.Scaleform, 'SET_HORSE')
         ScaleformMovieMethodAddParamInt(i) -- Horse index
 
-        BeginTextCommandScaleformString(name) -- Horse name
+        -- Horse name
+        BeginTextCommandScaleformString(name)
         EndTextCommandScaleformString()
 
-        ScaleformMovieMethodAddParamPlayerNameString('Just a random horse') -- 1/1
+        ScaleformMovieMethodAddParamPlayerNameString('Just a random horse')
 
-        ScaleformMovieMethodAddParamInt(2)
-        ScaleformMovieMethodAddParamInt(5)
-        ScaleformMovieMethodAddParamInt(4)
-        ScaleformMovieMethodAddParamInt(3)
+        -- Horse style
+        ScaleformMovieMethodAddParamInt(self.HorseStyles[i][1])
+        ScaleformMovieMethodAddParamInt(self.HorseStyles[i][2])
+        ScaleformMovieMethodAddParamInt(self.HorseStyles[i][3])
+        ScaleformMovieMethodAddParamInt(self.HorseStyles[i][4])
         EndScaleformMovieMethod()
     end
 end
