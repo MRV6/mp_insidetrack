@@ -62,7 +62,8 @@ Citizen.CreateThread(function()
 
             if Utils.ChooseHorseVisible then
                 if (clickedButton ~= 12) then
-                    Utils:ShowBetScreen((clickedButton - 1))
+                    Utils.CurrentHorse = (clickedButton - 1)
+                    Utils:ShowBetScreen(Utils.CurrentHorse)
                     Utils.ChooseHorseVisible = false
                 end
             end
@@ -78,12 +79,40 @@ Citizen.CreateThread(function()
                     Utils.ChooseHorseVisible = false
                 end
                 
-                Utils:ShowMainScreen()
+                if Utils.BetVisible then
+                    Utils:ShowHorseSelection()
+                    Utils.BetVisible = false
+                    Utils.CurrentHorse = -1
+                else
+                    Utils:ShowMainScreen()
+                end
             end
 
             -- Start bet
             if (clickedButton == 1) then
                 Utils:ShowHorseSelection()
+            end
+
+            -- Start race
+            if (clickedButton == 10) then
+                Utils:StartRace()
+            end
+
+            -- Change bet
+            if (clickedButton == 8) then
+                if (Utils.CurrentBet < Utils.PlayerBalance) then
+                    Utils.CurrentBet = (Utils.CurrentBet + 100)
+                    Utils.CurrentGain = (Utils.CurrentBet * 2)
+                    Utils:UpdateBetValues(Utils.CurrentHorse, Utils.CurrentBet, Utils.PlayerBalance, Utils.CurrentGain)
+                end
+            end
+
+            if (clickedButton == 9) then
+                if (Utils.CurrentBet > 100) then
+                    Utils.CurrentBet = (Utils.CurrentBet - 100)
+                    Utils.CurrentGain = (Utils.CurrentBet * 2)
+                    Utils:UpdateBetValues(Utils.CurrentHorse, Utils.CurrentBet, Utils.PlayerBalance, Utils.CurrentGain)
+                end
             end
         end
     end

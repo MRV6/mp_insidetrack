@@ -1,9 +1,14 @@
 function Utils:ShowBetScreen(horse)
+    self:UpdateBetValues(horse, self.CurrentBet, self.PlayerBalance, self.CurrentGain)
+
     BeginScaleformMovieMethod(self.Scaleform, 'SHOW_SCREEN')
     ScaleformMovieMethodAddParamInt(3)
     EndScaleformMovieMethod()
 
-    self:UpdateBetValues(horse, 0, 0, 0)
+    BeginScaleformMovieMethod(self.Scaleform, 'SET_BETTING_ENABLED')
+    ScaleformMovieMethodAddParamBool(true)
+    EndScaleformMovieMethod()
+
     self.BetVisible = true
 end
 
