@@ -25,6 +25,8 @@ end
 function Utils:StartRace()
     GenerateHorsesOrder()
 
+    self.CurrentWinner = Utils.HorsesPositions[1]
+
     BeginScaleformMovieMethod(self.Scaleform, 'START_RACE')
     ScaleformMovieMethodAddParamFloat(15000.0) -- Race duration (in MS)
     ScaleformMovieMethodAddParamInt(4)

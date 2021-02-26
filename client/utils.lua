@@ -14,7 +14,8 @@ Utils = {
     CurrentHorse = -1,
     CurrentBet = 100,
     CurrentGain = 1000,
-    HorsesPositions = {}
+    HorsesPositions = {},
+    CurrentWiner = -1
 }
 
 function Utils:GetMouseClickedButton()

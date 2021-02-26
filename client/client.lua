@@ -161,9 +161,15 @@ function Utils:HandleControls()
                     local raceFinished = GetScaleformMovieMethodReturnValueBool(raceReturnValue)
 
                     if (raceFinished) then
-                        -- Here you can add money etc
+                        if (Utils.CurrentWinner == Utils.CurrentHorse) then
+                            -- Here you can add money
+                            -- Exemple
+                            -- TriggerServerEvent('myCoolEventWhoAddMoney', Utils.CurrentGain)
+                        end
+
                         Utils:ShowResults()
                         Utils.CurrentHorse = -1
+                        Utils.CurrentWinner = -1
                         Utils.HorsesPositions = {}
 
                         checkRaceStatus = false
