@@ -150,24 +150,21 @@ function Utils:HandleControls()
                 while checkRaceStatus do
                     Wait(0)
 
-                    BeginScaleformMovieMethod(Utils.Scaleform, 'GET_RACE_IS_COMPLETE')
-
-                    local raceReturnValue = EndScaleformMovieMethodReturnValue()
-
-                    while not IsScaleformMovieMethodReturnValueReady(raceReturnValue) do
-                        Wait(0)
-                    end
-
-                    local raceFinished = GetScaleformMovieMethodReturnValueBool(raceReturnValue)
+                    local raceFinished = Utils:IsRaceFinished()
 
                     if (raceFinished) then
-                        if (Utils.CurrentWinner == Utils.CurrentHorse) then
+                        if (Utils.CurrentHorse == Utils.CurrentWinner) then
                             -- Here you can add money
                             -- Exemple
                             -- TriggerServerEvent('myCoolEventWhoAddMoney', Utils.CurrentGain)
+
+                            -- Refresh player balance
+                            Utils.PlayerBalance = (Utils.PlayerBalance + Utils.CurrentGain)
+                            Utils:UpdateBetValues(Utils.CurrentHorse, Utils.CurrentBet, Utils.PlayerBalance, Utils.CurrentGain)
                         end
 
                         Utils:ShowResults()
+
                         Utils.CurrentHorse = -1
                         Utils.CurrentWinner = -1
                         Utils.HorsesPositions = {}
