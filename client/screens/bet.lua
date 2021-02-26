@@ -1,22 +1,15 @@
-function Utils:ShowBetScreen()
+function Utils:ShowBetScreen(horse)
     BeginScaleformMovieMethod(self.Scaleform, 'SHOW_SCREEN')
     ScaleformMovieMethodAddParamInt(3)
     EndScaleformMovieMethod()
 
-    BeginScaleformMovieMethod(self.Scaleform, 'SET_BETTING_VALUES')
-    ScaleformMovieMethodAddParamInt(0) -- Unk
-
-    ScaleformMovieMethodAddParamInt(0)
-    ScaleformMovieMethodAddParamInt(0)
-    ScaleformMovieMethodAddParamInt(0)
-    EndScaleformMovieMethod()
-
+    self:UpdateBetValues(horse, 0, 0, 0)
     self.BetVisible = true
 end
 
-function Utils:UpdateBetValues(bet, balance, gain)
+function Utils:UpdateBetValues(horse, bet, balance, gain)
     BeginScaleformMovieMethod(self.Scaleform, 'SET_BETTING_VALUES')
-    ScaleformMovieMethodAddParamInt(0) -- Unk (Probably selected horse index)
+    ScaleformMovieMethodAddParamInt(horse) -- Horse index
 
     ScaleformMovieMethodAddParamInt(bet) -- Bet
     ScaleformMovieMethodAddParamInt(balance) -- Current balance

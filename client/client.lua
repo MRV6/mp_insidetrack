@@ -62,7 +62,7 @@ Citizen.CreateThread(function()
 
             if Utils.ChooseHorseVisible then
                 if (clickedButton ~= 12) then
-                    Utils:ShowBetScreen()
+                    Utils:ShowBetScreen((clickedButton - 1))
                     Utils.ChooseHorseVisible = false
                 end
             end
