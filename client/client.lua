@@ -1,5 +1,3 @@
--- TODO: Add sounds
-
 local cooldown = 60
 local tick = 0
 local checkRaceStatus = false
@@ -166,6 +164,7 @@ function Utils:HandleControls()
                         -- Here you can add money etc
                         Utils:ShowResults()
                         Utils.CurrentHorse = -1
+                        Utils.HorsesPositions = {}
 
                         checkRaceStatus = false
                     end
