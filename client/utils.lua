@@ -5,14 +5,14 @@ Utils = {
 }
 
 function Utils:GetMouseClickedButton()
-	local returnValue = -1
+    local returnValue = -1
 
-	CallScaleformMovieMethodWithNumber(self.Scaleform, 'SET_INPUT_EVENT', 237.0, -1082130432, -1082130432, -1082130432, -1082130432)
+    CallScaleformMovieMethodWithNumber(self.Scaleform, 'SET_INPUT_EVENT', 237.0, -1082130432, -1082130432, -1082130432, -1082130432)
     BeginScaleformMovieMethod(self.Scaleform, 'GET_CURRENT_SELECTION')
 
-	returnValue = EndScaleformMovieMethodReturnValue()
+    returnValue = EndScaleformMovieMethodReturnValue()
 
-	while not IsScaleformMovieMethodReturnValueReady(returnValue) do
+    while not IsScaleformMovieMethodReturnValueReady(returnValue) do
         Wait(0)
     end
 
