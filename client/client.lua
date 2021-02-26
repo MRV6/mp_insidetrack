@@ -62,7 +62,7 @@ Citizen.CreateThread(function()
             local clickedButton = Utils:GetMouseClickedButton()
 
             if Utils.ChooseHorseVisible then
-                if (clickedButton ~= 12) then
+                if (clickedButton ~= 12) and (clickedButton ~= -1) then
                     Utils.CurrentHorse = (clickedButton - 1)
                     Utils:ShowBetScreen(Utils.CurrentHorse)
                     Utils.ChooseHorseVisible = false
@@ -136,6 +136,7 @@ Citizen.CreateThread(function()
                 local raceFinished = GetScaleformMovieMethodReturnValueBool(raceReturnValue)
 
                 if (raceFinished) then
+                    -- Here you can add money etc
                     Utils:ShowResults()
                     Utils.CurrentHorse = -1
 

@@ -31,13 +31,9 @@ function Utils:GetMouseClickedButton()
     return GetScaleformMovieMethodReturnValueInt(returnValue)
 end
 
--- TODO: Don't return already used names.
 function Utils.GetRandomHorseName()
-    local random = math.random(0, 20)
-
-    if (random < 10) then
-        return 'ITH_NAME_00'..random
-    else
-        return 'ITH_NAME_0'..random 
-    end 
+    local random = math.random(0, 99)
+    local randomName = (random < 10) and ('ITH_NAME_00'..random) or ('ITH_NAME_0'..random)
+    
+    return randomName
 end
