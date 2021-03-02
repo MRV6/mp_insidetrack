@@ -7,3 +7,5 @@ client_scripts {
     
     'client/screens/*.lua',
 }
+
+server_script 'server/server.lua'
