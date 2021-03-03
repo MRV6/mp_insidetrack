@@ -20,6 +20,10 @@ local function OpenInsideTrack()
     DisplayHud(false)
     SetPlayerControl(PlayerId(), false, 0)
 
+    while not RequestScriptAudioBank('DLC_VINEWOOD/CASINO_GENERAL') do
+        Wait(0)
+    end
+
     Utils:ShowMainScreen()
     Utils:SetMainScreenCooldown(cooldown)
 
@@ -121,6 +125,8 @@ function Utils:HandleControls()
 
                 -- Start race
                 if (clickedButton == 10) then
+                    PlaySoundFrontend(-1, 'race_loop', 'dlc_vw_casino_inside_track_betting_single_event_sounds')
+                    
                     Utils:StartRace()
                     checkRaceStatus = true
                 end
@@ -153,6 +159,8 @@ function Utils:HandleControls()
                     local raceFinished = Utils:IsRaceFinished()
 
                     if (raceFinished) then
+                        StopSound(0)
+
                         if (Utils.CurrentHorse == Utils.CurrentWinner) then
                             -- Here you can add money
                             -- Exemple
