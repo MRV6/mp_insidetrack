@@ -19,7 +19,7 @@ function Utils:AddHorses()
 
         ScaleformMovieMethodAddParamPlayerNameString('Cool Horse')
 
-        -- Horse style
+        -- Horse style (TODO: Random preset, different one for each horse)
         ScaleformMovieMethodAddParamInt(self.HorseStyles[i][1])
         ScaleformMovieMethodAddParamInt(self.HorseStyles[i][2])
         ScaleformMovieMethodAddParamInt(self.HorseStyles[i][3])
