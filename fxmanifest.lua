@@ -3,6 +3,7 @@ game 'gta5'
 
 client_scripts {
     'client/utils.lua',
+    'client/presets.lua',
     'client/client.lua',
     
     'client/screens/*.lua',
