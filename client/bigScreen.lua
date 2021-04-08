@@ -42,7 +42,9 @@ function Utils:HandleBigScreen()
                 loadBigScreen()
             end
 
-            bigScreenRender = true
+            if not bigScreenRender then
+                bigScreenRender = true
+            end
 
             SetTextRenderId(screenTarget)
             SetScriptGfxDrawOrder(4)
