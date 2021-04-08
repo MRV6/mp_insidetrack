@@ -1,14 +1,15 @@
 local cooldown = 60
 local tick = 0
 local checkRaceStatus = false
-local insideTrackActive = false
+
+Utils.InsideTrackActive = false
 
 local function OpenInsideTrack()
-    if insideTrackActive then
+    if Utils.InsideTrackActive then
         return
     end
 
-    insideTrackActive = true
+    Utils.InsideTrackActive = true
 
     -- Scaleform
     Utils.Scaleform = RequestScaleformMovie('HORSE_RACING_CONSOLE')
@@ -19,6 +20,7 @@ local function OpenInsideTrack()
 
     DisplayHud(false)
     SetPlayerControl(PlayerId(), false, 0)
+    ReleaseNamedRendertarget("casinoscreen_02")
 
     while not RequestScriptAudioBank('DLC_VINEWOOD/CASINO_GENERAL') do
         Wait(0)
@@ -28,14 +30,14 @@ local function OpenInsideTrack()
     Utils:SetMainScreenCooldown(cooldown)
 
     -- Add horses
-    Utils:AddHorses()
+    Utils.AddHorses(Utils.Scaleform)
 
     Utils:DrawInsideTrack()
     Utils:HandleControls()
 end
 
 local function LeaveInsideTrack()
-    insideTrackActive = false
+    Utils.InsideTrackActive = false
 
     DisplayHud(true)
     SetPlayerControl(PlayerId(), true, 0)
@@ -46,7 +48,7 @@ end
 
 function Utils:DrawInsideTrack()
     Citizen.CreateThread(function()
-        while insideTrackActive do
+        while Utils.InsideTrackActive do
             Wait(0)
 
             local xMouse, yMouse = GetDisabledControlNormal(2, 239), GetDisabledControlNormal(2, 240)
@@ -79,11 +81,13 @@ end
 
 function Utils:HandleControls()
     Citizen.CreateThread(function()
-        while insideTrackActive do
+        while Utils.InsideTrackActive do
             Wait(0)
 
             if IsControlJustPressed(2, 194) then
                 LeaveInsideTrack()
+                
+                Utils:DisplayBigScreen()
             end
 
             -- Left click

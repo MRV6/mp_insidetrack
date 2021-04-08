@@ -6,11 +6,11 @@ function Utils:ShowHorseSelection()
     EndScaleformMovieMethod()
 end
 
-function Utils:AddHorses()
+function Utils.AddHorses(scaleform)
     for i = 1, 6 do
-        local name = self.GetRandomHorseName()
+        local name = Utils.GetRandomHorseName()
 
-        BeginScaleformMovieMethod(self.Scaleform, 'SET_HORSE')
+        BeginScaleformMovieMethod(scaleform, 'SET_HORSE')
         ScaleformMovieMethodAddParamInt(i) -- Horse index
 
         -- Horse name
@@ -20,10 +20,10 @@ function Utils:AddHorses()
         ScaleformMovieMethodAddParamPlayerNameString('Cool Horse')
 
         -- Horse style (TODO: Random preset, different one for each horse)
-        ScaleformMovieMethodAddParamInt(self.HorseStyles[i][1])
-        ScaleformMovieMethodAddParamInt(self.HorseStyles[i][2])
-        ScaleformMovieMethodAddParamInt(self.HorseStyles[i][3])
-        ScaleformMovieMethodAddParamInt(self.HorseStyles[i][4])
+        ScaleformMovieMethodAddParamInt(Utils.HorseStyles[i][1])
+        ScaleformMovieMethodAddParamInt(Utils.HorseStyles[i][2])
+        ScaleformMovieMethodAddParamInt(Utils.HorseStyles[i][3])
+        ScaleformMovieMethodAddParamInt(Utils.HorseStyles[i][4])
         EndScaleformMovieMethod()
     end
 end

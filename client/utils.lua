@@ -7,7 +7,8 @@ Utils = {
     CurrentBet = 100,
     CurrentGain = 1000,
     HorsesPositions = {},
-    CurrentWiner = -1
+    CurrentWiner = -1,
+    EnableBigScreen = true -- Set it to false if you don't need the big screen
 }
 
 function Utils:GetMouseClickedButton()

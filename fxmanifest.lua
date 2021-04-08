@@ -5,6 +5,7 @@ client_scripts {
     'client/utils.lua',
     'client/presets.lua',
     'client/client.lua',
+    'client/bigScreen.lua',
     
     'client/screens/*.lua',
 }
