@@ -86,8 +86,6 @@ function Utils:HandleControls()
 
             if IsControlJustPressed(2, 194) then
                 LeaveInsideTrack()
-                
-                Utils:DisplayBigScreen()
             end
 
             -- Left click
