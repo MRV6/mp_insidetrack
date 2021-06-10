@@ -31,6 +31,6 @@ end
 function Utils.GetRandomHorseName()
     local random = math.random(0, 99)
     local randomName = (random < 10) and ('ITH_NAME_00'..random) or ('ITH_NAME_0'..random)
-    
+
     return randomName
 end
