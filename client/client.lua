@@ -163,7 +163,10 @@ function Utils:HandleControls()
                     local raceFinished = Utils:IsRaceFinished()
 
                     if (raceFinished) then
-                        StopSound(0)
+                        local soundId = GetSoundId()
+
+                        StopSound(soundId)
+                        ReleaseSoundId(soundId)
 
                         if (Utils.CurrentHorse == Utils.CurrentWinner) then
                             -- Here you can add money
