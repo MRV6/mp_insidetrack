@@ -129,7 +129,8 @@ function Utils:HandleControls()
 
                 -- Start race
                 if (clickedButton == 10) then
-                    PlaySoundFrontend(-1, 'race_loop', 'dlc_vw_casino_inside_track_betting_single_event_sounds')
+                    Utils.CurrentSoundId = GetSoundId()
+                    PlaySoundFrontend(Utils.CurrentSoundId, 'race_loop', 'dlc_vw_casino_inside_track_betting_single_event_sounds')
                     
                     Utils:StartRace()
                     checkRaceStatus = true
@@ -163,10 +164,10 @@ function Utils:HandleControls()
                     local raceFinished = Utils:IsRaceFinished()
 
                     if (raceFinished) then
-                        local soundId = GetSoundId()
+                        StopSound(Utils.CurrentSoundId)
+                        ReleaseSoundId(Utils.CurrentSoundId)
 
-                        StopSound(soundId)
-                        ReleaseSoundId(soundId)
+                        Utils.CurrentSoundId = -1
 
                         if (Utils.CurrentHorse == Utils.CurrentWinner) then
                             -- Here you can add money

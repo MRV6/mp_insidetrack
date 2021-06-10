@@ -8,7 +8,8 @@ Utils = {
     CurrentGain = 1000,
     HorsesPositions = {},
     CurrentWiner = -1,
-    EnableBigScreen = true -- Set it to false if you don't need the big screen
+    EnableBigScreen = true, -- Set it to false if you don't need the big screen,
+    CurrentSoundId = -1
 }
 
 function Utils:GetMouseClickedButton()

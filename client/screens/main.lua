@@ -22,7 +22,7 @@ function Utils:ShowMainScreen()
     EndScaleformMovieMethod()
 end
 
----@param cooldown int
+---@param cooldown integer
 ---(in seconds).
 function Utils:SetMainScreenCooldown(cooldown)
     BeginScaleformMovieMethod(self.Scaleform, 'SET_COUNTDOWN')
