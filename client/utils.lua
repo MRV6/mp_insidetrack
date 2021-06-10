@@ -9,7 +9,8 @@ Utils = {
     HorsesPositions = {},
     CurrentWiner = -1,
     EnableBigScreen = true, -- Set it to false if you don't need the big screen,
-    CurrentSoundId = -1
+    CurrentSoundId = -1,
+    InsideTrackActive = false
 }
 
 function Utils:GetMouseClickedButton()

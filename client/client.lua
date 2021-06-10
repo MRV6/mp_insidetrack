@@ -2,8 +2,6 @@ local cooldown = 60
 local tick = 0
 local checkRaceStatus = false
 
-Utils.InsideTrackActive = false
-
 local function OpenInsideTrack()
     if Utils.InsideTrackActive then
         return

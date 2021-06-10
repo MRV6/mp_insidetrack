@@ -30,41 +30,43 @@ local function loadBigScreen()
 end
 
 function Utils:HandleBigScreen()
-    while not self.InsideTrackActive do
-        Wait(0)
-
-        local playerPed = PlayerPedId()
-        local playerCoords = GetEntityCoords(playerPed)
-        local distance = #(playerCoords - bigScreenCoords)
-
-        if (distance <= 30.0) then
-            if not isBigScreenLoaded then
-                loadBigScreen()
+    CreateThread(function()
+        while not self.InsideTrackActive do
+            Wait(0)
+    
+            local playerPed = PlayerPedId()
+            local playerCoords = GetEntityCoords(playerPed)
+            local distance = #(playerCoords - bigScreenCoords)
+    
+            if (distance <= 30.0) then
+                if not isBigScreenLoaded then
+                    loadBigScreen()
+                end
+    
+                if not bigScreenRender then
+                    bigScreenRender = true
+                end
+    
+                SetTextRenderId(screenTarget)
+                SetScriptGfxDrawOrder(4)
+                SetScriptGfxDrawBehindPausemenu(true)
+                DrawScaleformMovieFullscreen(bigScreenScaleform, 255, 255, 255, 255)
+                SetTextRenderId(GetDefaultScriptRendertargetRenderId())
+            elseif bigScreenRender then
+                bigScreenRender = false
+                isBigScreenLoaded = false
+    
+                ReleaseNamedRendertarget("casinoscreen_02")
+                SetScaleformMovieAsNoLongerNeeded(bigScreenScaleform)
             end
-
-            if not bigScreenRender then
-                bigScreenRender = true
-            end
-
-            SetTextRenderId(screenTarget)
-            SetScriptGfxDrawOrder(4)
-            SetScriptGfxDrawBehindPausemenu(true)
-            DrawScaleformMovieFullscreen(bigScreenScaleform, 255, 255, 255, 255)
-            SetTextRenderId(GetDefaultScriptRendertargetRenderId())
-        elseif bigScreenRender then
-            bigScreenRender = false
-            isBigScreenLoaded = false
-
-            ReleaseNamedRendertarget("casinoscreen_02")
-            SetScaleformMovieAsNoLongerNeeded(bigScreenScaleform)
-        end
-    end
+        end 
+    end)
 end
 
-Citizen.CreateThread(function()
+do
     if not Utils.EnableBigScreen then
         return
     end
     
     Utils:HandleBigScreen()
-end)
+end
