@@ -10,4 +10,4 @@ client_scripts {
     'client/screens/*.lua',
 }
 
-server_script 'server/server.lua'
+server_script 'server/buildCheck.lua'
