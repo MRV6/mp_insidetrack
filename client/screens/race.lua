@@ -29,7 +29,7 @@ function Utils:StartRace()
 
     BeginScaleformMovieMethod(self.Scaleform, 'START_RACE')
     ScaleformMovieMethodAddParamFloat(15000.0) -- Race duration (in MS)
-    ScaleformMovieMethodAddParamInt(4)
+    ScaleformMovieMethodAddParamInt(4) -- Seed
 
     -- Add each horses by their index (win order)
     ScaleformMovieMethodAddParamInt(self.HorsesPositions[1])
@@ -39,7 +39,7 @@ function Utils:StartRace()
     ScaleformMovieMethodAddParamInt(self.HorsesPositions[5])
     ScaleformMovieMethodAddParamInt(self.HorsesPositions[6])
 
-    ScaleformMovieMethodAddParamFloat(0.0) -- Unk
+    ScaleformMovieMethodAddParamFloat(0.0) -- Offset
     ScaleformMovieMethodAddParamBool(false)
     EndScaleformMovieMethod()
 end
