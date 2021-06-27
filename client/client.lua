@@ -1,5 +1,3 @@
-local cooldown = 60
-local tick = 0
 local checkRaceStatus = false
 
 local function OpenInsideTrack()
@@ -28,7 +26,6 @@ local function OpenInsideTrack()
     end
 
     Utils:ShowMainScreen()
-    Utils:SetMainScreenCooldown(cooldown)
 
     -- Add horses
     Utils.AddHorses(Utils.Scaleform)
@@ -53,20 +50,6 @@ function Utils:DrawInsideTrack()
             Wait(0)
 
             local xMouse, yMouse = GetDisabledControlNormal(2, 239), GetDisabledControlNormal(2, 240)
-
-            -- Fake cooldown
-            tick = (tick + 10)
-
-            if (tick == 1000) then
-                if (cooldown == 1) then
-                    cooldown = 60
-                end
-                
-                cooldown = (cooldown - 1)
-                tick = 0
-
-                self:SetMainScreenCooldown(cooldown)
-            end
             
             -- Mouse control
             BeginScaleformMovieMethod(self.Scaleform, 'SET_MOUSE_INPUT')
