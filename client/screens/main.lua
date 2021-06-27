@@ -14,19 +14,15 @@ function Utils:ShowMainScreen()
     ScaleformMovieMethodAddParamInt(0)
     EndScaleformMovieMethod()
 
-    BeginScaleformMovieMethod(Utils.Scaleform, 'SET_MAIN_EVENT_IN_PROGRESS')
-    ScaleformMovieMethodAddParamBool(true)
+    -- BeginScaleformMovieMethod(Utils.Scaleform, 'SET_MAIN_EVENT_IN_PROGRESS')
+    -- ScaleformMovieMethodAddParamBool(true)
+    -- EndScaleformMovieMethod()
+
+    BeginScaleformMovieMethod(self.Scaleform, 'SET_COUNTDOWN')
+    ScaleformMovieMethodAddParamInt(0)
     EndScaleformMovieMethod()
 
     BeginScaleformMovieMethod(Utils.Scaleform, 'CLEAR_ALL')
-    EndScaleformMovieMethod()
-end
-
----@param cooldown integer
----(in seconds).
-function Utils:SetMainScreenCooldown(cooldown)
-    BeginScaleformMovieMethod(self.Scaleform, 'SET_COUNTDOWN')
-    ScaleformMovieMethodAddParamInt(cooldown)
     EndScaleformMovieMethod()
 end
 
