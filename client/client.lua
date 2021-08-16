@@ -1,6 +1,7 @@
 local cooldown = 60
 local tick = 0
 local checkRaceStatus = false
+local casinoAudioBank = 'DLC_VINEWOOD/CASINO_GENERAL' -- Do not edit
 
 local function OpenInsideTrack()
     if Utils.InsideTrackActive then
@@ -18,12 +19,8 @@ local function OpenInsideTrack()
 
     DisplayHud(false)
     SetPlayerControl(PlayerId(), false, 0)
-    
-    if IsNamedRendertargetRegistered('casinoscreen_02') then
-        ReleaseNamedRendertarget('casinoscreen_02')
-    end
 
-    while not RequestScriptAudioBank('DLC_VINEWOOD/CASINO_GENERAL') do
+    while not RequestScriptAudioBank(casinoAudioBank) do
         Wait(0)
     end
 
@@ -43,6 +40,7 @@ local function LeaveInsideTrack()
     DisplayHud(true)
     SetPlayerControl(PlayerId(), true, 0)
     SetScaleformMovieAsNoLongerNeeded(Utils.Scaleform)
+    ReleaseNamedScriptAudioBank(casinoAudioBank)
 
     Utils.Scaleform = -1
 end
