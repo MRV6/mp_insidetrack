@@ -8,9 +8,12 @@ Utils = {
     CurrentGain = 1000,
     HorsesPositions = {},
     CurrentWiner = -1,
-    EnableBigScreen = true, -- Set it to false if you don't need the big screen,
     CurrentSoundId = -1,
-    InsideTrackActive = false
+    InsideTrackActive = false,
+    BigScreen = {
+        enable = true, -- Set it to false if you don't need the big screen
+        coords = vector3(1092.75, 264.56, -51.24)
+    }
 }
 
 function Utils:GetMouseClickedButton()
